@@ -35,15 +35,3 @@ BTSes parseBTSFile(const std::string &path) {
   }
   return btsSet;
 }
-
-int runBTSParser() {
-  std::string const btsPath = "data/bts_truncated.csv";
-  BTSes btsSet = parseBTSFile(btsPath);
-  std::cout << "Number of BTSes: " << btsSet.size() << std::endl;
-
-  BTSes::iterator it = btsSet.begin();
-  for (int i = 0; i < 10; ++i) {
-    std::cout << "BTS(" << it->getX() << ", " << it->getY() << ")" << std::endl;
-    it++;
-  }
-}

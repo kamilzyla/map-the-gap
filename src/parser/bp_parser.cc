@@ -29,15 +29,3 @@ BPs parseBPFile(const std::string &path) {
   }
   return bpSet;
 }
-
-int runBPParser() {
-  std::string const btsPath = "data/bp_truncated.csv";
-  BPs bpSet = parseBPFile(btsPath);
-  std::cout << "Number of BTSes: " << bpSet.size() << std::endl;
-
-  BPs::iterator it = bpSet.begin();
-  for (int i = 0; i < 10; ++i) {
-    std::cout << "BTS(" << it->getX() << ", " << it->getY() << ")" << std::endl;
-    it++;
-  }
-}
