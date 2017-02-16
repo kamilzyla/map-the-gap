@@ -7,6 +7,7 @@
 #include <cassert>
 
 #include "common.h"
+#include "../point/Point.h"
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
@@ -16,29 +17,11 @@ double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   return degrees + minutes / 60 + seconds / 3600;
 }
 
-class BTS {
- public:
-  typedef double Coordinate;
-
-  BTS(const Tokens &tokens) {
-    x_ = toDecimalDegrees(tokens[4]);
-    y_ = toDecimalDegrees(tokens[5]);
-  }
-
-  Coordinate getX() const {
-    return x_;
-  }
-
-  Coordinate getY() const {
-    return y_;
-  }
-
- private:
-  Coordinate x_;
-  Coordinate y_;
-};
-
-typedef std::vector<BTS> BTSes;
+BTS createBTS(const Tokens &tokens) {
+  double x = toDecimalDegrees(tokens[4]);
+  double y = toDecimalDegrees(tokens[5]);
+  return BTS(x, y);
+}
 
 BTSes parseBTSFile(const std::string &path) {
   std::ifstream file(path.c_str());
@@ -48,7 +31,7 @@ BTSes parseBTSFile(const std::string &path) {
   dropHeader(file);
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ',');
-    btsSet.push_back(BTS(tokens));
+    btsSet.push_back(createBTS(tokens));
   }
   return btsSet;
 }
