@@ -1,6 +1,8 @@
 date
 module load cray-mpich
 
-tar xf code.tar
-make COMPILE=CC
+tar xf src.tar
+make COMPILE="CC" FLAGS=""
+
+ln -s /icm/tmp/hackaton data
 srun main

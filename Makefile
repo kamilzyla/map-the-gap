@@ -12,8 +12,8 @@ clean:
 	rm -f main src.tar
 
 
-main: $(SOURCES) $(HEADERS)
+main: Makefile $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
 
-src.tar: $(SOURCES) $(HEADERS)
-	tar cf $@ src
+src.tar: Makefile $(SOURCES) $(HEADERS)
+	tar cf $@ src Makefile

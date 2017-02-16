@@ -31,7 +31,7 @@ BPs parseBPFile(const std::string &path) {
 }
 
 int runBPParser() {
-  std::string const btsPath = "../bp_truncated.csv";
+  std::string const btsPath = "data/bp_truncated.csv";
   BPs bpSet = parseBPFile(btsPath);
   std::cout << "Number of BTSes: " << bpSet.size() << std::endl;
 
