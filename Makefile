@@ -1,6 +1,7 @@
 COMPILE := mpic++
 FLAGS :=
-SOURCES := $(wildcard *.cc)
+SOURCES := $(shell find -type f -name '*.cc')
+HEADERS := $(shell find -type f -name '*.h')
 
 
 .PHONY: all clean
@@ -11,5 +12,5 @@ clean:
 	rm -f main
 
 
-main: $(SOURCES)
+main: $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
