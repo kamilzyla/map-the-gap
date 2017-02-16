@@ -1,6 +1,6 @@
 #include <iostream>
 #include <mpi.h>
-#include "bts_parser.h"
+#include "parser/bts_parser.h"
 
 
 int main(int argc, char *argv[]) {
