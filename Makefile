@@ -1,13 +1,14 @@
+COMPILE := mpic++
 FLAGS := -std=c++11 -Wno-literal-suffix
 
 
 .PHONY: all clean
 
-all: hello
+all: job
 
 clean:
-	rm -f hello
+	rm -f job
 
 
 %: %.cc
-	mpic++ $(FLAGS) -o $@ $<
+	$(COMPILE) $(FLAGS) -o $@ $<
