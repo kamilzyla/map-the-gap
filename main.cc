@@ -7,5 +7,6 @@ int main(int argc, char *argv[]) {
   MPI::Init(argc, argv);
   std::cerr << "Running...\n";
   runParser();
+  MPI::Finalize();
   return 0;
 }
