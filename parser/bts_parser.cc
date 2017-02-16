@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <cassert>
 
-typedef std::vector<std::string> Tokens;
+#include "common.h"
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
@@ -39,26 +39,6 @@ class BTS {
 };
 
 typedef std::vector<BTS> BTSes;
-
-Tokens getTokens(const std::string &line, char delim) {
-  Tokens tokens;
-
-  std::stringstream lineStream(line);
-  std::string cell;
-  while (std::getline(lineStream, cell, delim)) {
-    tokens.push_back(cell);
-  }
-
-//    for (std::string token: tokens) {
-//        std::cout << "Token: " << token << std::endl;
-//    }
-  return tokens;
-}
-
-void dropHeader(std::ifstream &file) {
-  std::string line;
-  std::getline(file, line);
-}
 
 BTSes parseBTSFile(const std::string &path) {
   std::ifstream file(path.c_str());
