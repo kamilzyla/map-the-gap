@@ -5,6 +5,10 @@
 #ifndef MAP_THE_GAP_BP_PARSER_H
 #define MAP_THE_GAP_BP_PARSER_H
 
-int runBPParser();
+#include <string>
+
+#include "../point/Point.h"
+
+BPs parseBPFile(const std::string &path);
 
 #endif //MAP_THE_GAP_BP_PARSER_H
