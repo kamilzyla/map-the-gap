@@ -13,6 +13,7 @@ double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   int degrees = atoi(degreesMinutesSecondsString.c_str() + 1);
   int minutes = atoi(degreesMinutesSecondsString.c_str() + 4);
   int seconds = atoi(degreesMinutesSecondsString.c_str() + 7);
+  std::cout << "(" << degrees << ", " << minutes << ", " << seconds << ")";
   return degrees + minutes / 60 + seconds / 3600;
 }
 
