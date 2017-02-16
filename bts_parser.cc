@@ -10,10 +10,9 @@ typedef std::vector<std::string> Tokens;
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
-  int degrees = atoi(degreesMinutesSecondsString.c_str() + 1);
-  int minutes = atoi(degreesMinutesSecondsString.c_str() + 4);
-  int seconds = atoi(degreesMinutesSecondsString.c_str() + 7);
-  std::cout << "(" << degrees << ", " << minutes << ", " << seconds << ")";
+  double degrees = atoi(degreesMinutesSecondsString.c_str() + 1);
+  double minutes = atoi(degreesMinutesSecondsString.c_str() + 4);
+  double seconds = atoi(degreesMinutesSecondsString.c_str() + 7);
   return degrees + minutes / 60 + seconds / 3600;
 }
 
