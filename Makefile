@@ -1,5 +1,5 @@
 COMPILE := mpic++
-FLAGS :=
+FLAGS := -Wall
 SOURCES := $(shell find -type f -name '*.cc')
 HEADERS := $(shell find -type f -name '*.h')
 
@@ -9,8 +9,11 @@ HEADERS := $(shell find -type f -name '*.h')
 all: main
 
 clean:
-	rm -f main
+	rm -f main code.tar
 
 
 main: $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
+
+code.tar: clean
+	tar cf $@ * --exclude "startup_script"

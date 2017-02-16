@@ -1,5 +1,6 @@
 date
 module load cray-mpich
 
+tar xf code.tar
 make COMPILE=CC
 srun main
