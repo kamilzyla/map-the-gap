@@ -2,4 +2,4 @@ date
 module load cray-mpich
 
 make COMPILE=CC
-srun job
+srun main

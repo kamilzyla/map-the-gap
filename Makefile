@@ -1,14 +1,15 @@
 COMPILE := mpic++
 FLAGS :=
+SOURCES := $(wildcard *.cc)
 
 
 .PHONY: all clean
 
-all: job
+all: main
 
 clean:
-	rm -f job
+	rm -f main
 
 
-%: %.cc
-	$(COMPILE) $(FLAGS) -o $@ $<
+main: $(SOURCES)
+	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
