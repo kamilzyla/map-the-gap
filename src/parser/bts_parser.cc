@@ -30,7 +30,7 @@ BTSes parseBTSFile(const std::string &path) {
   BTSes btsSet;
   dropHeader(file);
   while (std::getline(file, line)) {
-    Tokens tokens = getTokens(line, ',');
+    Tokens tokens = getTokens(line, ';');
     btsSet.push_back(createBTS(tokens));
   }
   return btsSet;
