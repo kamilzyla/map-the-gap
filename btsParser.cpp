@@ -4,14 +4,26 @@
 #include <set>
 #include <fstream>
 #include <unordered_set>
+#include <cassert>
 
 using Tokens = std::vector<std::string>;
 
+double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
+    assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
+    int degrees = atoi(degreesMinutesSecondsString.c_str() + 1);
+    int minutes = atoi(degreesMinutesSecondsString.c_str() + 4);
+    int seconds = atoi(degreesMinutesSecondsString.c_str() + 7);
+    return degrees + minutes / 60 + seconds / 3600;
+}
+
 class BTS {
 public:
-    using Coordinate = std::string;
+    using Coordinate = double;
 
-    BTS(const Tokens &tokens) : x_(tokens[4]), y_(tokens[5]) {}
+    BTS(const Tokens &tokens) {
+        x_ = toDecimalDegrees(tokens[4]);
+        y_ = toDecimalDegrees(tokens[5]);
+    }
 
     Coordinate getX() const {
         return x_;
