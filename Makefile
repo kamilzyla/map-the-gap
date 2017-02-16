@@ -6,7 +6,7 @@ HEADERS := $(shell find -type f -name '*.h')
 
 .PHONY: all clean
 
-all: main
+all: main code.tar
 
 clean:
 	rm -f main code.tar
@@ -15,5 +15,5 @@ clean:
 main: $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
 
-code.tar: clean
-	tar cf $@ * --exclude "startup_script"
+code.tar: $(SOURCES) $(HEADERS)
+	tar cf $@ src

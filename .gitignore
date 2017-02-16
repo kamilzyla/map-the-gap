@@ -1,8 +1,7 @@
 # Michal
 /CMakeLists.txt
 /cmake-build-debug/
-/main
 
 # Targets
-/job
+/main
 /code.tar
