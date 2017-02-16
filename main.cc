@@ -1,8 +1,11 @@
+#include <iostream>
 #include <mpi.h>
-#include <cstdio>
+#include "bts_parser.h"
+
 
 int main(int argc, char *argv[]) {
   MPI::Init(argc, argv);
-  puts("Yolo");
+  std::cerr << "Running...\n";
+  runParser();
   return 0;
 }

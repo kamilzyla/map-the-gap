@@ -74,7 +74,7 @@ BTSes parseBTSFile(const std::string &path) {
   return btsSet;
 }
 
-int main() {
+int runParser() {
   std::string const btsPath = "../bts_truncated.csv";
   BTSes btsSet = parseBTSFile(btsPath);
   std::cout << "Number of BTSes: " << btsSet.size() << std::endl;
