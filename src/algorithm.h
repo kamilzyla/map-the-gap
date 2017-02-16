@@ -6,7 +6,8 @@
 #define MAP_THE_GAP_ALGORITHM_H
 
 #include <string>
+#include "solution.h"
 
-int run(const std::string &btsPath, const std::string &bpPath);
+Solution run(const std::string &btsPath, const std::string &bpPath);
 
 #endif //MAP_THE_GAP_ALGORITHM_H

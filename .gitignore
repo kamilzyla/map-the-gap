@@ -5,3 +5,5 @@ CMakeLists.txt
 # Targets
 /main
 /src.tar
+
+/.ipynb_checkpoints/

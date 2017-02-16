@@ -8,6 +8,7 @@
 #include "parser/bts_parser.h"
 #include "parser/bp_parser.h"
 #include "utils/distance.h"
+#include "solution.h"
 
 const double MAX_DISTANCE = 1000000;
 
@@ -18,7 +19,7 @@ struct pair_cmp {
   }
 };
 
-int run(const std::string &btsPath, const std::string &bpPath) {
+Solution run(const std::string &btsPath, const std::string &bpPath) {
   BTSes btses = parseBTSFile(btsPath);
   BPs bps = parseBPFile(bpPath);
 
@@ -30,11 +31,16 @@ int run(const std::string &btsPath, const std::string &bpPath) {
 
   double totalDistance = 0;
   int numConnectedBPs = 0;
+  Solution solution;
   while (!q.empty()) {
     std::pair<double, BP> distanceToPoint = q.top();
     q.pop();
     double distance = distanceToPoint.first;
     if (distance + totalDistance <= MAX_DISTANCE) {
+      Path path(randomBTS);
+      path.addBP(distanceToPoint.second);
+      solution.addPath(path);
+
       totalDistance += distance;
       numConnectedBPs++;
     } else {
@@ -42,5 +48,5 @@ int run(const std::string &btsPath, const std::string &bpPath) {
     }
   }
 
-  return numConnectedBPs;
+  return solution;
 }
