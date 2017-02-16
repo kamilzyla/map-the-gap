@@ -3,7 +3,6 @@
 
 int main(int argc, char *argv[]) {
   MPI::Init(argc, argv);
-  auto f = []() { puts("Yolo"); };
-  f ();
+  puts("Yolo");
   return 0;
 }

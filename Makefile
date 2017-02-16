@@ -1,5 +1,5 @@
 COMPILE := mpic++
-FLAGS := -std=c++11 -Wno-literal-suffix
+FLAGS :=
 
 
 .PHONY: all clean
