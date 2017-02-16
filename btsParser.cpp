@@ -3,10 +3,10 @@
 #include <sstream>
 #include <set>
 #include <fstream>
-#include <unordered_set>
+#include <cstdlib>
 #include <cassert>
 
-using Tokens = std::vector<std::string>;
+typedef std::vector<std::string> Tokens;
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
@@ -18,7 +18,7 @@ double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
 
 class BTS {
  public:
-  using Coordinate = double;
+  typedef double Coordinate;
 
   BTS(const Tokens &tokens) {
     x_ = toDecimalDegrees(tokens[4]);
@@ -38,7 +38,7 @@ class BTS {
   Coordinate y_;
 };
 
-using BTSes = std::vector<BTS>;
+typedef std::vector<BTS> BTSes;
 
 Tokens getTokens(const std::string &line, char delim) {
   Tokens tokens;
@@ -61,13 +61,13 @@ void dropHeader(std::ifstream &file) {
 }
 
 BTSes parseBTSFile(const std::string &path) {
-  std::ifstream file(path);
+  std::ifstream file(path.c_str());
   std::string line;
 
   BTSes btsSet;
   dropHeader(file);
   while (std::getline(file, line)) {
-    auto tokens = getTokens(line, ',');
+    Tokens tokens = getTokens(line, ',');
     btsSet.push_back(BTS(tokens));
   }
   return btsSet;
@@ -78,7 +78,7 @@ int main() {
   BTSes btsSet = parseBTSFile(btsPath);
   std::cout << "Number of BTSes: " << btsSet.size() << std::endl;
 
-  auto it = btsSet.begin();
+  BTSes::iterator it = btsSet.begin();
   for (int i = 0; i < 10; ++i) {
     std::cout << "BTS(" << it->getX() << ", " << it->getY() << ")" << std::endl;
     it++;
