@@ -6,14 +6,14 @@ HEADERS := $(shell find -type f -name '*.h')
 
 .PHONY: all clean
 
-all: main code.tar
+all: main src.tar
 
 clean:
-	rm -f main code.tar
+	rm -f main src.tar
 
 
 main: $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
 
-code.tar: $(SOURCES) $(HEADERS)
+src.tar: $(SOURCES) $(HEADERS)
 	tar cf $@ src
