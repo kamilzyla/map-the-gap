@@ -15,6 +15,10 @@ class Path {
     bps_.push_back(bp);
   }
 
+  size_t getNumConnectedBPs() const {
+    return bps_.size();
+  }
+
   friend std::ostream& operator<<(std::ostream& os, const Path& path);
 
  private:
@@ -26,6 +30,14 @@ class Solution {
  public:
   void addPath(const Path &path) {
     paths_.push_back(path);
+  }
+
+  size_t getNumConnectedBPs() const {
+    size_t numConnectedBPs = 0;
+    for (int i = 0; i < (int) paths_.size(); ++i) {
+      numConnectedBPs += paths_[i].getNumConnectedBPs();
+    }
+    return numConnectedBPs;
   }
 
   friend std::ostream& operator<<(std::ostream& os, const Solution& solution) {
