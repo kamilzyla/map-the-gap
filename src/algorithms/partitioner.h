@@ -28,7 +28,7 @@ void partitionPoints(const std::map<int, T> &pointsPerGmina) {
   DEB("After loop\n");
 
   it = pointsPerGmina.begin();
-  while (it != pointsPerGmina.end() && slaveId < nodes()) {
+  while (it != pointsPerGmina.end()) {
     DEB("Dupa!\n");
     int numPointsInGmina = (int) it->second.size();
     putInt(slaveId, numPointsInGmina);
@@ -39,7 +39,7 @@ void partitionPoints(const std::map<int, T> &pointsPerGmina) {
     double cableLength = (double) numPointsInGmina * WHOLE_CABLE_LENGTH / numAllPoints;
     putDouble(slaveId, cableLength);
     send(slaveId);
-    ++slaveId;
+    slaveId = ((slaveId + 1) % (nodes() - 1)) + 1;
     ++it;
   }
 }
