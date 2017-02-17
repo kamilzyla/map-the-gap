@@ -2,7 +2,7 @@ date
 module load cray-mpich
 
 tar xf main.tar
-make COMPILE="CC" FLAGS="" &> compile.log
+make COMPILE="CC" FLAGS="-Isrc" &> compile.log
 
 ln -s "/icm/tmp/hackaton/bp_konkurs_2_20160912.csv" "data/bp.csv"
 ln -s "/icm/tmp/hackaton/LTE1800 - stan na 2017-01-25.csv" "data/bts.csv"

@@ -3,7 +3,7 @@
 
 #include <cstdio>
 
-#define DEBUG 1
+#define DEBUG 0
 #define DEB(args...) do { if (DEBUG) fprintf(stderr, args); } while (0)
 
 #endif  // DEBUG_H_

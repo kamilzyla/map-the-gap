@@ -8,8 +8,9 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include "debug.h"
 
-#include "../message.h"
+#include "message.h"
 
 const int WHOLE_CABLE_LENGTH = 1000000;
 

@@ -1,4 +1,5 @@
 #include "slave.h"
+#include "debug.h"
 
 #include "message.h"
 #include "utils/point.h"

@@ -1,4 +1,5 @@
 #include "message.h"
+#include "debug.h"
 #include <vector>
 #include <mpi.h>
 

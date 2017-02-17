@@ -3,6 +3,7 @@
 //
 
 #include "algorithm_runner.h"
+#include "debug.h"
 
 #include <cstdlib>
 
