@@ -2,14 +2,18 @@
 // Created by zak on 2/17/17.
 //
 
-#include <map>
-#include <iostream>
-#include <iomanip>
+#include "algorithm_runner.h"
+
 #include <cstdlib>
 
-#include "algorithm_runner.h"
-#include "../parser/bts_parser.h"
-#include "../message.h"
+#include <iomanip>
+#include <iostream>
+#include <map>
+
+#include "algorithms/slave.h"
+#include "message.h"
+#include "parser/bts_parser.h"
+
 
 const int MASTER_ID = 0;
 
@@ -54,10 +58,6 @@ void master(const std::string &btsPath, const std::string &bpPath) {
   time(&end);
   printSolution(solution);
   printSummary(start, end, solution);
-}
-
-void slave() {
-  // TODO
 }
 
 void run() {
