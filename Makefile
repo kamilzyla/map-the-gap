@@ -1,20 +1,29 @@
 COMPILE := mpic++
-FLAGS := -Wall -Isrc
+FLAGS := -Wall -Isrc -include "debug.h"
+
 SOURCES := $(shell find -type f -name '*.cc')
 HEADERS := $(shell find -type f -name '*.h')
+OBJECTS := $(SOURCES:cc=o)
+TARGETS := main main.tar
+TAR := Makefile src data/preprocessed_bts.csv
 
 
-.PHONY: all clean main.tar
+.PHONY: all clean run main.tar
 
-all: main main.tar
+all: $(TARGETS)
 
 clean:
-	rm -f main main.tar
+	rm -f $(TARGETS) $(OBJECTS)
+
+run: main
+	mpirun -n $(shell nproc) main
 
 
-main: Makefile $(SOURCES) $(HEADERS)
-	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
+%.o: %.cc
+	$(COMPILE) -c -o $@ $(FLAGS) $^
 
-main.tar: Makefile src data/preprocessed_bts.csv
-	rm -f $@
-	tar cf $@ $^
+main: $(OBJECTS)
+	$(COMPILE) -o $@ $(FLAGS) $^
+
+main.tar:
+	tar cf $@ $(TAR) --exclude "*.o"

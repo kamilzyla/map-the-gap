@@ -21,11 +21,15 @@ void putPoint(const Point &p) {
 }
 
 void slave() {
+  DEB("Slave %d\n", id());
+
   receive(MASTER_ID);
   std::vector<Point> access_points = getVector();
   getDouble(MASTER_ID);  // Ignored - on Michal's request.
   std::vector<Point> houses = getVector();
   double budget = getDouble(MASTER_ID);
+
+  DEB("Slave %d received data\n", id());
 
   if (access_points.empty()) {
     putInt(MASTER_ID, 0);
@@ -47,10 +51,14 @@ void slave() {
     }
   }
 
+  DEB("Slave %d finished computing\n", id());
+
   putInt(MASTER_ID, connected);
   for (size_t i = 0; i < connected; ++i) {
     putInt(MASTER_ID, 1);
     putPoint(ap);
     putPoint(houses[i]);
   }
+
+  DEB("Slave %d done\n", id());
 }

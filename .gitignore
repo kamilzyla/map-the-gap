@@ -1,9 +1,11 @@
 # Michal
 CMakeLists.txt
 /cmake-build-debug/
+/.ipynb_checkpoints/
 
 # Targets
 /main
 /main.tar
 
-/.ipynb_checkpoints/
+# Other
+*.o

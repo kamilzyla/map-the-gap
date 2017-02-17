@@ -5,6 +5,7 @@
 #ifndef MAP_THE_GAP_PARTITIONER_H
 #define MAP_THE_GAP_PARTITIONER_H
 
+#include <iostream>
 #include <map>
 #include <string>
 
@@ -23,7 +24,8 @@ void partitionPoints(const std::map<int, T> &pointsPerGmina) {
     ++it;
   }
 
-  while (it != pointsPerGmina.end()) {
+  while (it != pointsPerGmina.end() && slaveId < nodes()) {
+    std::cerr << "Dupa\n";
     int numPointsInGmina = (int) it->second.size();
     putInt(slaveId, numPointsInGmina);
     for (int i = 0; i < numPointsInGmina; ++i) {
