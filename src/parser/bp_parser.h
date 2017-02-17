@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "../point/Point.h"
+#include "utils/point.h"
 
 BPs parseBPFile(const std::string &path);
 

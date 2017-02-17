@@ -6,7 +6,8 @@
 #define MAP_THE_GAP_SOLUTION_H
 
 #include <ostream>
-#include "../point/Point.h"
+#include "utils/point.h"
+
 class Path {
  public:
   explicit Path(const BTS &bts): bts_(bts) {}

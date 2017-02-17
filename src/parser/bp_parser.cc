@@ -6,7 +6,6 @@
 
 #include "common.h"
 #include "wgs84_do_puwg92.h"
-#include "../point/Point.h"
 
 BP createBP(const Tokens &tokens) {
   int x_puwg92 = atoi(tokens[11].c_str() + 1); // First character is: '"'

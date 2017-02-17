@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../point/Point.h"
+#include "utils/point.h"
 
 typedef std::vector<std::pair<BTS, int> > BTSesWithGminas;
 
