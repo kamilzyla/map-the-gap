@@ -24,7 +24,7 @@ BPsInGminas parseBPFile(const std::string &path) {
   dropHeader(file);
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ';');
-    int gminaId = atoi(tokens[5].c_str());
+    int gminaId = atoi(tokens[5].c_str() + 1);
     bpSet[gminaId].push_back(createBP(tokens));
   }
   return bpSet;

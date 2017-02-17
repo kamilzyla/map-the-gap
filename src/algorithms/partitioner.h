@@ -18,14 +18,17 @@ void partitionPoints(const std::map<int, T> &pointsPerGmina) {
   DEB("partitionPoints\n");
   int slaveId = 1;
   typename std::map<int, T>::const_iterator it = pointsPerGmina.begin();
-
+  DEB("Map size: %lu\n", pointsPerGmina.size());
   int numAllPoints = 0;
   while (it != pointsPerGmina.end()) {
     numAllPoints += (int) it->second.size();
     ++it;
   }
+  DEB("After loop\n");
 
+  it = pointsPerGmina.begin();
   while (it != pointsPerGmina.end() && slaveId < nodes()) {
+    DEB("Dupa!\n");
     int numPointsInGmina = (int) it->second.size();
     putInt(slaveId, numPointsInGmina);
     for (int i = 0; i < numPointsInGmina; ++i) {

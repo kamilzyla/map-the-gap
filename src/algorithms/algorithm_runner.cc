@@ -52,6 +52,7 @@ void master(const std::string &btsPath, const std::string &bpPath) {
   time_t start, end;
   time(&start);
 
+  DEB("Master\n");
   partitionData(btsPath, bpPath);
   Solution solution;
   for (int nodeId = 0; nodeId < nodes(); ++nodeId) {
