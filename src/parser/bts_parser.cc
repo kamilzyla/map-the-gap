@@ -23,15 +23,15 @@ BTS createBTS(const Tokens &tokens) {
   return BTS(x, y);
 }
 
-BTSesWithGminas parseBTSFile(const std::string &path) {
+BTSesInGminas parseBTSFile(const std::string &path) {
   std::ifstream file(path.c_str());
   std::string line;
 
-  BTSesWithGminas btsSet;
+  BTSesInGminas btsSet;
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ';');
-    int gmina = atoi(tokens[2].c_str());
-    btsSet.push_back(std::make_pair(createBTS(tokens), gmina));
+    int gminaId = atoi(tokens[2].c_str());
+    btsSet[gminaId].push_back(createBTS(tokens));
   }
   return btsSet;
 }
