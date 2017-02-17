@@ -7,7 +7,9 @@
 const int MASTER_ID = 0;
 
 std::vector<Point> getVector() {
+  DEB("getVector()\n");
   int count = getInt(MASTER_ID);
+  DEB("getVector(): count = %d\n", count);
   std::vector<Point> points;
   for (int i = 0; i < count; ++i) {
     points.push_back(Point(getDouble(MASTER_ID), getDouble(MASTER_ID)));

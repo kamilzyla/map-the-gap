@@ -16,7 +16,7 @@ clean:
 	rm -f $(TARGETS) $(OBJECTS)
 
 run: main
-	mpirun -n $(shell nproc) main
+	mpirun -n 4 main
 
 
 %.o: %.cc

@@ -72,7 +72,9 @@ void putInt(int target, int value) {
 }
 
 void putDouble(int target, double value) {
+  DEB("putDouble(%d, %lf)\n", target, value);
   MPI_Send(&value, 1, MPI_DOUBLE, target, DATA_TAG, MPI_COMM_WORLD);
+  DEB("putDouble() finished\n");
 }
 
 void send(int target) {

@@ -15,6 +15,7 @@ const int WHOLE_CABLE_LENGTH = 1000000;
 
 template <class T>
 void partitionPoints(const std::map<int, T> &pointsPerGmina) {
+  DEB("partitionPoints\n");
   int slaveId = 1;
   typename std::map<int, T>::const_iterator it = pointsPerGmina.begin();
 
@@ -25,7 +26,6 @@ void partitionPoints(const std::map<int, T> &pointsPerGmina) {
   }
 
   while (it != pointsPerGmina.end() && slaveId < nodes()) {
-    std::cerr << "Dupa\n";
     int numPointsInGmina = (int) it->second.size();
     putInt(slaveId, numPointsInGmina);
     for (int i = 0; i < numPointsInGmina; ++i) {
