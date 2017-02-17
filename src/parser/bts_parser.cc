@@ -18,20 +18,20 @@ double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
 }
 
 BTS createBTS(const Tokens &tokens) {
-  double x = toDecimalDegrees(tokens[0]);
-  double y = toDecimalDegrees(tokens[1]);
+  double x = toDecimalDegrees(tokens[4]);
+  double y = toDecimalDegrees(tokens[5]);
   return BTS(x, y);
 }
 
-BTSesInGminas parseBTSFile(const std::string &path) {
+BTSes parseBTSFile(const std::string &path) {
   std::ifstream file(path.c_str());
   std::string line;
 
-  BTSesInGminas btsSet;
+  BTSes btsSet;
+  dropHeader(file);
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ';');
-    int gminaId = atoi(tokens[2].c_str());
-    btsSet[gminaId].push_back(createBTS(tokens));
+    btsSet.push_back(createBTS(tokens));
   }
   return btsSet;
 }
