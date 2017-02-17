@@ -6,6 +6,7 @@
 #include "algorithms/algorithm_runner.h"
 #include "algorithms/solution.h"
 #include "compute_pi.h"
+#include "local/local.h"
 #include "message.h"
 #include "utils/runner.h"
 
@@ -14,6 +15,7 @@ int main(int argc, char *argv[]) {
   Runner runner("PROG", run);
   runner.registerFunc("sol", run);
   runner.registerFunc("pi", computePi);
+  runner.registerFunc("local", local);
   runner.run();
   return finalize();
 }
