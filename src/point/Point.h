@@ -21,6 +21,10 @@ class Point {
     return os;
   }
 
+  friend bool operator<(const Point& lhs, const Point& rhs) {
+    return lhs.x_ < rhs.x_ || (lhs.x_ == rhs.x_ && lhs.y_ < rhs.y_);
+  }
+
  protected:
   double x_;
   double y_;

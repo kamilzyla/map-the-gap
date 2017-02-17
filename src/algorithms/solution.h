@@ -6,13 +6,21 @@
 #define MAP_THE_GAP_SOLUTION_H
 
 #include <ostream>
-#include "point/Point.h"
+#include "../point/Point.h"
 class Path {
  public:
   explicit Path(const BTS &bts): bts_(bts) {}
 
   void addBP(const BP &bp) {
     bps_.push_back(bp);
+  }
+
+  BPs getBPs() const {
+    return bps_;
+  }
+
+  BTS getBTS() const {
+    return bts_;
   }
 
   size_t getNumConnectedBPs() const {
@@ -23,13 +31,17 @@ class Path {
 
  private:
   BTS bts_;
-  std::vector<BP> bps_;
+  BPs bps_;
 };
 
 class Solution {
  public:
   void addPath(const Path &path) {
     paths_.push_back(path);
+  }
+
+  std::vector<Path> getPaths() const {
+    return paths_;
   }
 
   size_t getNumConnectedBPs() const {

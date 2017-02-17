@@ -2,12 +2,12 @@
 #include <iomanip>
 #include <iostream>
 #include <mpi.h>
-#include "algorithm.h"
+#include <iomanip>
+#include "algorithms/simple.h"
 #include "compute_pi.h"
+#include "algorithms/solution.h"
 #include "message.h"
 #include "runner.h"
-#include "solution.h"
-
 
 void printSolution(const Solution &solution) {
   std::cout << solution;

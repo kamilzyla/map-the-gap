@@ -5,9 +5,9 @@
 #include <string>
 #include <queue>
 
-#include "parser/bts_parser.h"
-#include "parser/bp_parser.h"
-#include "utils/distance.h"
+#include "../parser/bts_parser.h"
+#include "../parser/bp_parser.h"
+#include "../utils/distance.h"
 #include "solution.h"
 
 const double MAX_DISTANCE = 1000000;
