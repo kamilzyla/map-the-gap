@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
+#include "algorithms/solution.h"
 #include "debug.h"
 #include "parser/bp_parser.h"
 #include "parser/bts_parser.h"
@@ -95,4 +96,13 @@ void local() {
     // DEB("%lf ", i->d);
   // }
   // DEB("\n");
+
+  Solution sol;
+  double budget = 1e6;
+  FOREACH(i, matches) if (i->d <= budget) {
+    Path path(BTS(i->ap.getX(), i->ap.getY()));
+    path.addBP(BP(i->house.getX(), i->house.getY()));
+    sol.addPath(path);
+    budget -= i->d;
+  }
 }
