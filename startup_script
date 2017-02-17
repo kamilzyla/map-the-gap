@@ -1,7 +1,7 @@
 date
 module load cray-mpich
 
-tar xf src.tar
+tar xf main.tar
 make COMPILE="CC" FLAGS="" &> compile.log
 
 ln -s "/icm/tmp/hackaton/bp_konkurs_2_20160912.csv" "data/bp.csv"

@@ -28,9 +28,19 @@ void printSummary(const time_t &start, const time_t &end, const Solution &soluti
 void partitionData(const std::string &btsPath, const std::string &bpPath) {
   BTSesWithGminas btsesWithGminas = parseBTSFile(btsPath);
   std::map<int, BTSes> btsesInGminas;
-  for (int i = 0; i < btsesWithGminas.size(); ++i) {
+  for (size_t i = 0; i < btsesWithGminas.size(); ++i) {
     btsesInGminas[btsesWithGminas[i].second].push_back(btsesWithGminas[i].first);
   }
+}
+
+std::vector<Solution> gatherPartialSolutions() {
+  // TODO
+  return std::vector<Solution>();
+}
+
+Solution joinSolutions(const std::vector<Solution> partial_solutions) {
+  // TODO
+  return Solution();
 }
 
 void master(const std::string &btsPath, const std::string &bpPath) {
@@ -44,6 +54,10 @@ void master(const std::string &btsPath, const std::string &bpPath) {
   time(&end);
   printSolution(solution);
   printSummary(start, end, solution);
+}
+
+void slave() {
+  // TODO
 }
 
 void run() {
