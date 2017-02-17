@@ -6,9 +6,11 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <vector>
 
 #include "algorithm_runner.h"
 #include "partitioner.h"
+#include "../utils/point.h"
 
 const int MASTER_ID = 0;
 
@@ -24,14 +26,22 @@ void printSummary(const time_t &start, const time_t &end, const Solution &soluti
   std::cout << getenv("UC_NODES") << ' ' << getenv("UC_TOTAL_PROCESSORS") << std::endl;
 }
 
-std::vector<Solution> gatherPartialSolutions() {
-  // TODO
-  return std::vector<Solution>();
-}
-
-Solution joinSolutions(const std::vector<Solution> partial_solutions) {
-  // TODO
-  return Solution();
+void receivePartialSolution(int nodeId, Solution &solution) {
+  receive(nodeId);
+  int numPaths = getInt(nodeId);
+  for (int pathIdx = 0; pathIdx < numPaths; ++pathIdx) {
+    int numBPOnPath = getInt(nodeId);
+    double x, y;
+    x = getDouble(nodeId);
+    y = getDouble(nodeId);
+    Path path(BTS(x, y));
+    for (int bpIdx = 0; bpIdx < numBPOnPath; ++bpIdx) {
+      x = getDouble(nodeId);
+      y = getDouble(nodeId);
+      path.addBP(BP(x, y));
+    }
+    solution.addPath(path);
+  }
 }
 
 void master(const std::string &btsPath, const std::string &bpPath) {
@@ -39,8 +49,12 @@ void master(const std::string &btsPath, const std::string &bpPath) {
   time(&start);
 
   partitionData(btsPath, bpPath);
-  std::vector<Solution> partialSolutions = gatherPartialSolutions();
-  Solution solution = joinSolutions(partialSolutions);
+  Solution solution;
+  for (int nodeId = 0; nodeId < nodes(); ++nodeId) {
+    if (nodeId != MASTER_ID) {
+      receivePartialSolution(nodeId, solution);
+    }
+  }
 
   time(&end);
   printSolution(solution);
