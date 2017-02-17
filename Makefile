@@ -4,16 +4,17 @@ SOURCES := $(shell find -type f -name '*.cc')
 HEADERS := $(shell find -type f -name '*.h')
 
 
-.PHONY: all clean
+.PHONY: all clean main.tar
 
-all: main src.tar
+all: main main.tar
 
 clean:
-	rm -f main src.tar
+	rm -f main main.tar
 
 
 main: Makefile $(SOURCES) $(HEADERS)
 	$(COMPILE) $(FLAGS) -o $@ $(SOURCES)
 
-src.tar: Makefile $(SOURCES) $(HEADERS)
-	tar cf $@ src Makefile
+main.tar: Makefile src data/preprocessed_bts.csv
+	rm -f $@
+	tar cf $@ $^

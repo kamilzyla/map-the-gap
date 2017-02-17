@@ -48,7 +48,7 @@ void master(const std::string &btsPath, const std::string &bpPath) {
 
 void run() {
   if (id() == MASTER_ID)
-    master("data/preprocessedBTS.csv", "data/bp_konkurs_2_20160912");
+    master("data/preprocessed_bts.csv", "data/bp.csv");
   else
     slave();
 }
