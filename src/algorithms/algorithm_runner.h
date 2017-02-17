@@ -11,4 +11,7 @@
 
 void run();
 
+void printSolution(const Solution &solution);
+void printSummary(const time_t &start, const time_t &end, const Solution &solution);
+
 #endif //MAP_THE_GAP_RUNNER_H

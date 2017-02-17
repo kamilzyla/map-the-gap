@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "algorithms/solution.h"
+#include "algorithms/algorithm_runner.h"
 #include "debug.h"
 #include "parser/bp_parser.h"
 #include "parser/bts_parser.h"
@@ -70,8 +71,7 @@ struct GminaInstance {
   }
 };
 
-
-void local() {
+static Solution local_wrapped() {
   DEB("Running local algorithm...\n");
 
   BTSesInGminas access_points = parseBTSFile("data/preprocessed_bts.csv");
@@ -105,4 +105,15 @@ void local() {
     sol.addPath(path);
     budget -= i->d;
   }
+  return sol;
+}
+
+void local() {
+  time_t start, end;
+  time(&start);
+  Solution solution = local_wrapped();
+  time(&end);
+
+  printSolution(solution);
+  printSummary(start, end, solution);
 }
