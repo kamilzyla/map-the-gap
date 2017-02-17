@@ -7,7 +7,6 @@
 #include <cassert>
 
 #include "common.h"
-#include "../point/Point.h"
 #include "bts_parser.h"
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {

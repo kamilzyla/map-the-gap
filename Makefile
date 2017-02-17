@@ -1,5 +1,5 @@
 COMPILE := mpic++
-FLAGS := -Wall
+FLAGS := -Wall -Isrc
 SOURCES := $(shell find -type f -name '*.cc')
 HEADERS := $(shell find -type f -name '*.h')
 

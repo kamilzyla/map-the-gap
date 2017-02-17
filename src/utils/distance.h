@@ -1,12 +1,8 @@
-//
-// Created by zak on 2/16/17.
-//
+#ifndef UTILS_DISTANCE_H_
+#define UTILS_DISTANCE_H_
 
-#ifndef MAP_THE_GAP_DISTANCE_H
-#define MAP_THE_GAP_DISTANCE_H
-
-#include "../point/Point.h"
+#include "utils/point.h"
 
 double computeDistance(Point p1, Point p2);
 
-#endif //MAP_THE_GAP_DISTANCE_H
+#endif  // UTILS_DISTANCE_H_

@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include "../point/Point.h"
+#include "utils/point.h"
 
 typedef std::map<int, BTSes> BTSesInGminas;
 
