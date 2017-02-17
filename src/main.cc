@@ -5,7 +5,9 @@
 #include "algorithm.h"
 #include "compute_pi.h"
 #include "message.h"
+#include "runner.h"
 #include "solution.h"
+
 
 void printSolution(const Solution &solution) {
   std::cout << solution;
@@ -28,17 +30,12 @@ void runSolution() {
   printSummary(start, end, solution);
 }
 
+
 int main(int argc, char *argv[]) {
   init(&argc, &argv);
-  if (argc <= 1)
-    runSolution();
-  else if (argc == 2) {
-    if (strcmp(argv[1], "pi") == 0)
-      computePi();
-    else
-      std::cerr << "Unrecognized option: " << argv[1] << '\n';
-  } else if (argc > 2) {
-    std::cerr << "Expected 0 or 1 argument.\n";
-  }
+  Runner runner("PROG", runSolution);
+  runner.registerFunc("sol", runSolution);
+  runner.registerFunc("pi", computePi);
+  runner.run();
   return finalize();
 }
