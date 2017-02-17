@@ -1,8 +1,8 @@
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
 
-void messageInit(int *argc, char ***argv);
-void messageFinalize();
+void init(int *argc, char ***argv);
+int finalize();
 
 int nodes();
 int id();

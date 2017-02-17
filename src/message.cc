@@ -42,12 +42,13 @@ class SendBuf {
 };
 
 
-void messageInit(int *argc, char ***argv) {
+void init(int *argc, char ***argv) {
   MPI_Init(argc, argv);
 }
 
-void messageFinalize() {
+int finalize() {
   MPI_Finalize();
+  return 0;
 }
 
 int nodes() {
