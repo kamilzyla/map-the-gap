@@ -1,16 +1,35 @@
 #include "local.h"
 
+#include <algorithm>
+#include <cmath>
+
 #include "debug.h"
 #include "parser/bp_parser.h"
 #include "parser/bts_parser.h"
+#include "utils/distance.h"
 #include "utils/point.h"
 
+#define ALL(c) (c).begin(), (c).end()
+#define SIZE(x) (int)(x).size()
+#define REP(x,n) for(int x=0; x<(n); ++x)
 #define VAR(v,n) __typeof(n) v=n
 #define FOREACH(i,c) for(VAR(i,(c).begin()); i!=(c).end(); ++i)
 using namespace std;
 
-double budget = 1e6;
+void debPoint(const char *s, Point p) {
+  DEB("%s %lf %lf\n", s, p.getX(), p.getY());
+}
 
+struct Match {
+  double d;
+  Point ap, house;
+
+  Match(double d, Point ap, Point house): d(d), ap(ap), house(house) {}
+};
+
+bool operator<(const Match &l, const Match &r) { return l.d < r.d; }
+
+std::vector<Match> matches;
 
 struct GminaInstance {
   int id;
@@ -19,16 +38,34 @@ struct GminaInstance {
 
   void debug() {
     DEB("Gmina id: %d\n", id);
-    FOREACH(i, ac_points) {
-      DEB("AP %lf %lf\n", i->getX(), i->getY());
-    }
-    FOREACH(i, houses) {
-      DEB("H %lf %lf\n", i->getX(), i->getY());
-    }
+    FOREACH(i, ac_points) debPoint("AP", *i);
+    FOREACH(i, houses) debPoint("H", *i);
   }
 
   void solve() {
+    while (!houses.empty()) {
+      Point h = houses.back();
+      houses.pop_back();
 
+      double best_d = INFINITY;
+      int best_i = -1;
+      REP(i, SIZE(ac_points)) {
+        Point ac = ac_points[i];
+        double d = computeDistance(ac, h);
+        if (d < best_d) {
+          best_d = d;
+          best_i = i;
+        }
+      }
+      // DEB("Matched pair:\n");
+      // debPoint("AP", ac_points[best_i]);
+      // debPoint("H", h);
+
+      Match m(best_d, ac_points[best_i], h);
+      matches.push_back(m);
+
+      // TODO: Debug dist.
+    }
   }
 };
 
@@ -51,4 +88,11 @@ void local() {
       g.solve();
     }
   }
+
+  sort(ALL(matches));
+  // DEB("Found %lu matches\n", matches.size());
+  // FOREACH(i, matches) {
+    // DEB("%lf ", i->d);
+  // }
+  // DEB("\n");
 }
