@@ -3,11 +3,11 @@
 #include <iostream>
 #include <mpi.h>
 #include <iomanip>
-#include "compute_pi.h"
-#include "algorithms/solution.h"
-#include "message.h"
-#include "runner.h"
 #include "algorithms/algorithm_runner.h"
+#include "algorithms/solution.h"
+#include "compute_pi.h"
+#include "message.h"
+#include "utils/runner.h"
 
 int main(int argc, char *argv[]) {
   init(&argc, &argv);
