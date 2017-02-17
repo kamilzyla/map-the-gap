@@ -8,6 +8,6 @@
 
 typedef std::map<int, BTSes> BTSesInGminas;
 
-BTSesInGminas parseBTSFile(const std::string &path);
+BTSes parseBTSFile(const std::string &path);
 
 #endif  // BTS_PARSER_H_

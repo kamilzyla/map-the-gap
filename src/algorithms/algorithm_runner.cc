@@ -70,7 +70,7 @@ void master(const std::string &btsPath, const std::string &bpPath) {
 void run() {
   DEB("Hello from thread %d\n", id());
   if (id() == MASTER_ID)
-    master("data/preprocessed_bts.csv", "data/bp.csv");
+    master("data/bts.csv", "data/bp.csv");
   else
     slave();
 }
