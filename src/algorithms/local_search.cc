@@ -94,7 +94,7 @@ class LSPaths {
   std::map<BTS, BPs> beginnings_;
 };
 
-Solution run(const Solution &solution) {
+Solution localSearch(const Solution &solution) {
   srand(time(NULL));
 
   LSPaths lsPaths(solution);

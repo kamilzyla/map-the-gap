@@ -9,6 +9,6 @@
 
 #include "solution.h"
 
-Solution run(const Solution &solution);
+Solution localSearch(const Solution &solution);
 
 #endif //MAP_THE_GAP_LOCAL_SEARCH_H

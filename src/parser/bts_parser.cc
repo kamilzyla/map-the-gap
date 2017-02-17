@@ -8,6 +8,7 @@
 
 #include "common.h"
 #include "../point/Point.h"
+#include "bts_parser.h"
 
 double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
   assert(degreesMinutesSecondsString.size() == 12); // Should be "DDEMM'SS"""
@@ -18,20 +19,20 @@ double toDecimalDegrees(std::string const &degreesMinutesSecondsString) {
 }
 
 BTS createBTS(const Tokens &tokens) {
-  double x = toDecimalDegrees(tokens[4]);
-  double y = toDecimalDegrees(tokens[5]);
+  double x = toDecimalDegrees(tokens[0]);
+  double y = toDecimalDegrees(tokens[1]);
   return BTS(x, y);
 }
 
-BTSes parseBTSFile(const std::string &path) {
+BTSesWithGminas parseBTSFile(const std::string &path) {
   std::ifstream file(path.c_str());
   std::string line;
 
-  BTSes btsSet;
-  dropHeader(file);
+  BTSesWithGminas btsSet;
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ';');
-    btsSet.push_back(createBTS(tokens));
+    int gmina = atoi(tokens[2].c_str());
+    btsSet.push_back(std::make_pair(createBTS(tokens), gmina));
   }
   return btsSet;
 }

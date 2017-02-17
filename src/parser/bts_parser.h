@@ -5,6 +5,8 @@
 
 #include "../point/Point.h"
 
-BTSes parseBTSFile(const std::string &path);
+typedef std::vector<std::pair<BTS, int> > BTSesWithGminas;
+
+BTSesWithGminas parseBTSFile(const std::string &path);
 
 #endif  // BTS_PARSER_H_
