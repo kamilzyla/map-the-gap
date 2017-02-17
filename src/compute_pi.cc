@@ -18,9 +18,6 @@ static void master() {
   std::cout << "nodes: " << nodes() << '\n';
   LL total = 0;
   for (int node = 0; node < nodes(); ++node) if (node != MASTER_ID) {
-    // int res;
-    // MPI_Status status;
-    // MPI_Recv(&res, 1, MPI_INT, node, DEFAULT_TAG, MPI_COMM_WORLD, &status);
     receive(node);
     total += getInt(node);
   }
@@ -33,12 +30,11 @@ static void slave() {
     if (sq(rand()-RAND_MAX/2) + sq(rand()-RAND_MAX/2) <= sq(RAND_MAX/2))
       ++res;
   }
-  // MPI_Send(&res, 1, MPI_INT, MASTER_ID, DEFAULT_TAG, MPI_COMM_WORLD);
   putInt(MASTER_ID, res);
   send(MASTER_ID);
 }
 
-void compute_pi() {
+void computePi() {
   if (id() == MASTER_ID)
     master();
   else

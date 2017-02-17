@@ -3,6 +3,7 @@
 #include <iomanip>
 #include "algorithm.h"
 #include "compute_pi.h"
+#include "message.h"
 #include "solution.h"
 
 void printSolution(const Solution &solution) {
@@ -18,7 +19,7 @@ void printSummary(const time_t &start, const time_t &end, const Solution &soluti
 }
 
 int main(int argc, char *argv[]) {
-  MPI_Init(&argc, &argv);
+  messageInit(&argc, &argv);
   std::cerr << "Running..." << std::endl;
   time_t start, end;
   time(&start);
@@ -26,6 +27,6 @@ int main(int argc, char *argv[]) {
   time(&end);
   printSolution(solution);
   printSummary(start, end, solution);
-  MPI_Finalize();
+  messageFinalize();
   return 0;
 }
