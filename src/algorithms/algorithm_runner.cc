@@ -8,8 +8,7 @@
 #include <cstdlib>
 
 #include "algorithm_runner.h"
-#include "../parser/bts_parser.h"
-#include "../message.h"
+#include "partitioner.h"
 
 const int MASTER_ID = 0;
 
@@ -23,14 +22,6 @@ void printSummary(const time_t &start, const time_t &end, const Solution &soluti
   std::cout << solution.getNumConnectedBPs() << std::endl;
   std::cout << std::setprecision(2) << difftime(end, start) << std::endl;
   std::cout << getenv("UC_NODES") << ' ' << getenv("UC_TOTAL_PROCESSORS") << std::endl;
-}
-
-void partitionData(const std::string &btsPath, const std::string &bpPath) {
-  BTSesWithGminas btsesWithGminas = parseBTSFile(btsPath);
-  std::map<int, BTSes> btsesInGminas;
-  for (size_t i = 0; i < btsesWithGminas.size(); ++i) {
-    btsesInGminas[btsesWithGminas[i].second].push_back(btsesWithGminas[i].first);
-  }
 }
 
 std::vector<Solution> gatherPartialSolutions() {

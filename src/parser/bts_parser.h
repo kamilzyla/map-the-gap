@@ -2,11 +2,12 @@
 #define BTS_PARSER_H_
 
 #include <string>
+#include <map>
 
 #include "../point/Point.h"
 
-typedef std::vector<std::pair<BTS, int> > BTSesWithGminas;
+typedef std::map<int, BTSes> BTSesInGminas;
 
-BTSesWithGminas parseBTSFile(const std::string &path);
+BTSesInGminas parseBTSFile(const std::string &path);
 
 #endif  // BTS_PARSER_H_

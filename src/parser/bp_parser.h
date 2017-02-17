@@ -6,9 +6,12 @@
 #define MAP_THE_GAP_BP_PARSER_H
 
 #include <string>
+#include <map>
 
 #include "../point/Point.h"
 
-BPs parseBPFile(const std::string &path);
+typedef std::map<int, BPs> BPsInGminas;
+
+BPsInGminas parseBPFile(const std::string &path);
 
 #endif //MAP_THE_GAP_BP_PARSER_H

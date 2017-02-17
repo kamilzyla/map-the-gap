@@ -17,15 +17,16 @@ BP createBP(const Tokens &tokens) {
   return BP(x, y);
 }
 
-BPs parseBPFile(const std::string &path) {
+BPsInGminas parseBPFile(const std::string &path) {
   std::ifstream file(path.c_str());
   std::string line;
 
-  BPs bpSet;
+  BPsInGminas bpSet;
   dropHeader(file);
   while (std::getline(file, line)) {
     Tokens tokens = getTokens(line, ';');
-    bpSet.push_back(createBP(tokens));
+    int gminaId = atoi(tokens[5].c_str());
+    bpSet[gminaId].push_back(createBP(tokens));
   }
   return bpSet;
 }
